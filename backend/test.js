@@ -1,46 +1,33 @@
-import express from "express";
-import cors from "cors";
+import fs from "fs";
 
-const data = [
-  {
-    name: "Ariguun",
-    age: 26,
-    lastName: "Bold",
-    id: 1,
-  },
-];
+// fs.mkdir("teste", (error) => {
+//   if (error) {
+//     console.log(error);
+//   } else {
+//     console.log("Amjilttai uusgelee");
+//   }
+// });
 
-const secondData = {
-  name: "Boorchi",
-  age: 22,
-  lastName: "Bold",
-  id: 2,
-};
+// fs.writeFileSync("text.txt", "ariguunFile");
 
-const port = 3010;
-const app = express();
+// fs.writeFile("writeFile.txt", "writeFile", (error) => {
+//   if (error) {
+//     console.log(error);
+//   } else {
+//     console.log("Amjilttain uuslee");
+//   }
+// });
 
-app.use(cors());
-app.use(express.json());
+// const data = fs.readFileSync("text.txt");
+// console.log(data.toString());
 
-app.get("/", (request, response) => {
-  data.push(secondData);
-  response.json(data);
-});
+// const secondDta = fs.readFile("writeFile.txt", (error, data) =>
+//   console.log(data.toString())
+// );
 
-app.get("/api", (request, response) => {
-  response.json(data);
-});
+const data = { name: "Dada", age: 10 };
+fs.writeFileSync("db.json", JSON.stringify(data));
 
-app.post("/", (request, response) => {
-  response.send("Post hvselt irlee");
-});
-
-app.delete("/", (request, response) => {
-  // Implement deletion logic if needed
-  response.send("Deleted successfully");
-});
-
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
+const stringify = JSON.stringify(data);
+const parse = JSON.parse(stringify);
+console.log(stringify, "===", parse);
